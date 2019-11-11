@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PurchasingMenuController">
+   <children>
+      <Label layoutX="208.0" layoutY="59.0" text="Purchasing Menu">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="25.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleMainMenuButton" text="Main Menu">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="213.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleGenerateShoppingListButton" text="Generate Shopping List">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="175.0" layoutY="192.0" mnemonicParsing="false" text="Generate Supplier Shopping List">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <ComboBox layoutX="232.0" layoutY="239.0" prefWidth="150.0" promptText="Choose Supplier" />
+   </children>
+</AnchorPane>
