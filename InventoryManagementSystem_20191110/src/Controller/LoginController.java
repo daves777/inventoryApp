@@ -40,10 +40,20 @@ public class LoginController implements Initializable {
     
     @FXML
     private Stage myStage;
-
     
     @FXML
     private void handleSubmitButton(ActionEvent event) throws IOException 
+    {
+        authenticatePassword();
+    }
+    
+    @FXML
+    private void handleEnterButton(ActionEvent event) throws IOException 
+    {
+        authenticatePassword();
+    }
+    
+    public void authenticatePassword() throws IOException
     {
         for(int i = 0;i < model.getEmployeeList().getNumEmployees();i++)
         {
@@ -75,7 +85,7 @@ public class LoginController implements Initializable {
               System.out.println(usernameField.getText()+" - No such user found");
             }
         }
-    } 
+    }
     
     public void setModel(Model m)
     {

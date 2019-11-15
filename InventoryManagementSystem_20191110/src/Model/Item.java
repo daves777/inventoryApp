@@ -5,26 +5,31 @@ package Model;
  */
 public class Item 
 {
-    private String key;
-    private String item;
     
-    public Item(String key, String item)
+    private int key;
+    private String description;
+    private String baseUOM;
+    private double costPerUOM;
+    
+    public Item(int key, String item, String uom, double uomCost)
     {
         this.key = key;
-        this.item = item;
+        this.description = item;
+        baseUOM = uom;
+        costPerUOM = uomCost;
     }
 
     /**
      * @return the key
      */
-    public String getKey() {
+    public int getKey() {
         return key;
     }
 
     /**
      * @param key the key to set
      */
-    public void setKey(String key) {
+    public void setKey(int key) {
         this.key = key;
     }
 
@@ -32,14 +37,14 @@ public class Item
      * @return the item
      */
     public String getItem() {
-        return item;
+        return description;
     }
 
     /**
      * @param item the item to set
      */
     public void setItem(String item) {
-        this.item = item;
+        this.description = item;
     }
 
    

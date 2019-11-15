@@ -3,13 +3,16 @@ package Model;
 /**
  * Current Inventory Class
  */
+
+//Changes - item now represents an Item instead of a String. 
+
 public class CurrentInventory 
 {
-    private String item;
+    private Item item;
     private double quantity;
    
     
-    public CurrentInventory(String item, double quantity)
+    public CurrentInventory(Item item, double quantity)
     {
         this.item = item;
         this.quantity = quantity;
@@ -18,14 +21,14 @@ public class CurrentInventory
     /**
      * @return the item
      */
-    public String getItem() {
+    public Item getItem() {
         return item;
     }
 
     /**
      * @param item the item to set
      */
-    public void setItem(String item) {
+    public void setItem(Item item) {
         this.item = item;
     }
 
