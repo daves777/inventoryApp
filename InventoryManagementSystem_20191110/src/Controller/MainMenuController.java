@@ -96,6 +96,40 @@ public class MainMenuController implements Initializable {
         myStage.show();
     }
     
+    @FXML
+    private void handleCookButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Cook.fxml"));
+        Parent root = loader.load();
+        
+        CookController cc = loader.getController();
+        cc.setStage(myStage);
+        cc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        
+        myStage.setScene(scene);
+        myStage.show();
+    }
+    
+    @FXML
+    private void handleWaitStaffButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/WaitStaff.fxml"));
+        Parent root = loader.load();
+        
+        WaitStaffController wsc = loader.getController();
+        wsc.setStage(myStage);
+        wsc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        
+        myStage.setScene(scene);
+        myStage.show();
+    }
+    @FXML
+    private void handleReceiverButton(ActionEvent event) throws IOException {
+        //Implement once receiver button works
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

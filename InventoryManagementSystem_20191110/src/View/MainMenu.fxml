@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainMenuController">
    <children>
-      <Label layoutX="248.0" layoutY="48.0" text="Main Menu">
+      <Label layoutX="236.0" layoutY="49.0" text="Main Menu">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -17,17 +17,37 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="45.0" layoutY="135.0" mnemonicParsing="false" onAction="#handlePurchasingButton" text="Purchasing">
+      <Button layoutX="42.0" layoutY="135.0" mnemonicParsing="false" onAction="#handlePurchasingButton" prefHeight="37.0" prefWidth="107.0" text="Purchasing">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Label layoutX="62.0" layoutY="104.0" text="Inventory">
+      <Label layoutX="63.0" layoutY="104.0" text="Inventory">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="43.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleReceivingButton" prefHeight="37.0" prefWidth="107.0" text="Receiving">
          <font>
             <Font size="16.0" />
          </font>
+      </Button>
+      <Label layoutX="280.0" layoutY="104.0" text="Roles">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
       </Label>
-      <Button layoutX="50.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleReceivingButton" text="Receiving">
+      <Button layoutX="250.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleCookButton" prefHeight="37.0" prefWidth="107.0" text="Cook">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="250.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleWaitStaffButton" prefHeight="37.0" prefWidth="107.0" text="Wait Staff">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="250.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleReceiverButton" prefHeight="37.0" prefWidth="107.0" text="Receiver">
          <font>
             <Font size="16.0" />
          </font>

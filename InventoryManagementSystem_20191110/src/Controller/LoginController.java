@@ -63,6 +63,7 @@ public class LoginController implements Initializable {
                 if(model.getEmployeeList().getEmployee(i).getPassword().equals(passwordField.getText()))
                 {
                     System.out.println("password accepted: "+passwordField.getText());
+                    
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainMenu.fxml"));
                     Parent root = loader.load();
 
