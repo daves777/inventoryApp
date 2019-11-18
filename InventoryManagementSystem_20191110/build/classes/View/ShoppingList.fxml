@@ -4,55 +4,83 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ShoppingListController">
+<AnchorPane id="AnchorPane" prefHeight="682.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ShoppingListController">
    <children>
-      <Label layoutX="223.0" layoutY="28.0" text="Shopping List">
+      <Label layoutX="224.0" layoutY="14.0" text="Shopping List">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="21.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back">
+      <Button layoutX="25.0" layoutY="622.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
       <TableView fx:id="shopTable" editable="true" layoutX="58.0" layoutY="85.0" prefHeight="238.0" prefWidth="485.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Item" />
-          <TableColumn prefWidth="147.0" text="Quantity" />
-            <TableColumn prefWidth="163.0" text="Supplier" />
+          <TableColumn fx:id="item" prefWidth="75.0" text="Item" />
+          <TableColumn fx:id="quantity" prefWidth="147.0" text="Quantity" />
+            <TableColumn fx:id="supplier" prefWidth="163.0" text="Supplier" />
         </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
       </TableView>
-      <Label layoutX="415.0" layoutY="33.0" text="* Please add supplier">
+      <Label layoutX="415.0" layoutY="55.0" text="* Please add supplier">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="307.0" layoutY="341.0" mnemonicParsing="false" text="Add New Item">
+      <Button layoutX="151.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add New Item">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="452.0" layoutY="341.0" mnemonicParsing="false" text="Complete">
+      <Button layoutX="485.0" layoutY="622.0" mnemonicParsing="false" onAction="#handleCompleteButton" text="Complete">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="143.0" layoutY="341.0" mnemonicParsing="false" text="Edit">
+      <Button layoutX="263.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleEditButton" text="Edit">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="215.0" layoutY="341.0" mnemonicParsing="false" text="Delete">
+      <Button layoutX="347.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
+      <TextField fx:id="inputItem" layoutX="61.0" layoutY="499.0" promptText="Enter Item" />
+      <TextField fx:id="inputQuantity" layoutX="227.0" layoutY="499.0" promptText="Enter Quantity" />
+      <TextField fx:id="inputSupplier" layoutX="390.0" layoutY="499.0" promptText="Enter Supplier" />
+      <Button layoutX="284.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleUpdateButton" text="Update Existing Item">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Text layoutX="61.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a line in the table to">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="324.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="61.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add data, enter values below.  To edit data, enter or edit values below:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="63.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Multiplier (For Reference):">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="multiplierText" layoutX="262.0" layoutY="339.0" prefHeight="25.0" prefWidth="182.0" />
    </children>
 </AnchorPane>

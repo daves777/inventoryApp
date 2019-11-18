@@ -1,7 +1,5 @@
 package Model;
 
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -10,9 +8,9 @@ import javafx.beans.property.SimpleDoubleProperty;
  */
 public class ItemToPurchase 
 {
-    private StringProperty item;
-    private DoubleProperty quantity;
-    private StringProperty supplier;
+    private SimpleStringProperty item;
+    private SimpleDoubleProperty quantity;
+    private SimpleStringProperty supplier;
     
     public ItemToPurchase()
     {
@@ -29,42 +27,56 @@ public class ItemToPurchase
     /**
      * @return the item
      */
-    public StringProperty getItem() {
+    public SimpleStringProperty getItem() {
         return item;
     }
 
     /**
      * @param item the item to set
      */
-    public void setItem(StringProperty item) {
+    public void setItem(SimpleStringProperty item) {
         this.item = item;
+    }
+    
+    public SimpleStringProperty ItemProperty(){
+        return item;
     }
 
     /**
      * @return the quantity
      */
-    public DoubleProperty getQuantity() {
+    public SimpleDoubleProperty getQuantity() {
         return quantity;
     }
 
     /**
      * @param quantity the quantity to set
      */
-    public void setQuantity(DoubleProperty quantity) {
+    public void setQuantity(SimpleDoubleProperty quantity) {
         this.quantity = quantity;
+    }
+    
+    public SimpleDoubleProperty QuantityProperty() {
+        return quantity;
     }
 
     /**
      * @return the supplier
      */
-    public StringProperty getSupplier() {
+    public SimpleStringProperty getSupplier() {
         return supplier;
     }
 
     /**
      * @param supplier the supplier to set
      */
-    public void setSupplier(StringProperty supplier) {
+    public void setSupplier(SimpleStringProperty supplier) {
         this.supplier = supplier;
     }
+    
+    public SimpleStringProperty SupplierProperty(){
+        return supplier;
+    }
+
+   
 }

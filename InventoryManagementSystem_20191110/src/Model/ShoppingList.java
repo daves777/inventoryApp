@@ -13,54 +13,37 @@ public class ShoppingList
     private ArrayList<CurrentInventory> currentInventory;
     private ArrayList<ItemThresholds> threshold;
     private ArrayList<Item> item;
-    private ArrayList<Supplier> supplier;
-    
-    
-    
-    private ObservableList<ItemToPurchase> itemToPurchaseData = FXCollections.observableArrayList();
-    
-    public ShoppingList(DemandMultiplier dm, CurrentInventoryList cil, ItemThresholdList itl, ItemList it, SupplierList sl)
+    private ArrayList<Supplier> supplier;    
+
+    public ShoppingList(ItemList it, CurrentInventoryList cil, ItemThresholdList itl)
     {
-        demandMultiplier = dm.calculateMultiplier();
         currentInventory = cil.getCurrentInventoryData();
         threshold = itl.getItemThresholdData();
         item = it.getItemData();
-        supplier = sl.getSupplierData();
-        
-        calculateAmountToPurchase();
     }
        
-//    public ObservableList calculateAmountToPurchase()
-    public void calculateAmountToPurchase()
-         
-    {  
+    public double calculateAmountToPurchase(int i)   
+    {              
+        double amountToPurchase = 0.0;
         
-        for(int i=0;i<currentInventory.size();i++)
+        amountToPurchase = (currentInventory.get(i).getQuantity() - threshold.get(i).getThreshold()); 
+        if(amountToPurchase < 0) 
         {
-            double amountToPurchase = 0.0;
-            amountToPurchase = currentInventory.get(i).getQuantity() - (threshold.get(i).getThreshold() * demandMultiplier); 
-            if(amountToPurchase > 0) 
-            {
-                amountToPurchase = (amountToPurchase * -1);
-                getItemToPurchaseData().add(new ItemToPurchase(item.get(i).getItem(), amountToPurchase, ""));
-                System.out.println("Item to Purchase: " + item.get(i).getItem() + ", " + amountToPurchase);
-            } 
-        }
-//        return itemToPurchaseData;
+            amountToPurchase = ((amountToPurchase * -1) + 5);        
+            System.out.println("Item to Purchase: " + item.get(i).getItem() + ", " + amountToPurchase);
+        }         
+        return amountToPurchase;
     }
-
-    /**
-     * @return the itemToPurchaseData
-     */
-    public ObservableList<ItemToPurchase> getItemToPurchaseData() 
-    {
-        return itemToPurchaseData;
-    }
-
-    /**
-     * @param itemToPurchaseData the itemToPurchaseData to set
-     */
-    public void setItemToPurchaseData(ObservableList<ItemToPurchase> itemToPurchaseData) {
-        this.itemToPurchaseData = itemToPurchaseData;
+    
+    public String getItemToPurchase(int i)   
+    {              
+        double amountToPurchase = 0.0;
+        String itemList = "";
+        amountToPurchase = (currentInventory.get(i).getQuantity() - threshold.get(i).getThreshold()); 
+        if(amountToPurchase < 0) 
+        {      
+            itemList = item.get(i).getItem();
+        }         
+        return itemList;
     }
 }
