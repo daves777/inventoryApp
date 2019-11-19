@@ -14,12 +14,56 @@ import java.util.ArrayList;
 public class Meal {
     private String description;
     private int key;
-    private ArrayList<Item> ingredientList = new ArrayList<Item>();
+    private ArrayList<CurrentInventory> ingredientList = new ArrayList<CurrentInventory>();
     
-    public Meal(int myKey, String myDescription, ArrayList<Item> myIngredients)
+    public Meal(int myKey, String myDescription, ArrayList<CurrentInventory> myIngredients)
     {
         key = myKey;
         description = myDescription;
         ingredientList = myIngredients;
     }
+    
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the key
+     */
+    public int getKey() {
+        return key;
+    }
+
+    /**
+     * @param key the key to set
+     */
+    public void setKey(int key) {
+        this.key = key;
+    }
+
+    /**
+     * @return the ingredientList
+     */
+    public ArrayList<CurrentInventory> getIngredientList() {
+        return ingredientList;
+    }
+
+    /**
+     * @param ingredientList the ingredientList to set
+     */
+    public void setIngredientList(ArrayList<CurrentInventory> ingredientList) {
+        this.ingredientList = ingredientList;
+    }
+    
 }

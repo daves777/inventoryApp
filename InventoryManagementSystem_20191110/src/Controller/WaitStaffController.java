@@ -26,12 +26,14 @@ public class WaitStaffController implements Initializable {
 
     private Stage myStage;
     private Model model;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
     }
     
     public void setModel(Model m)

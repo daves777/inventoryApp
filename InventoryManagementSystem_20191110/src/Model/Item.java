@@ -19,6 +19,13 @@ public class Item
         costPerUOM = uomCost;
     }
 
+    public Item() {
+        key = 0;
+        description = "NULL";
+        baseUOM = "NULL";
+        costPerUOM = 0;
+    }
+
     /**
      * @return the key
      */

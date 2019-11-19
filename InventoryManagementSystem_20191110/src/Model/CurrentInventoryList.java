@@ -22,6 +22,7 @@ public class CurrentInventoryList
         return currentInventoryData;
     }
     
+
     public void addItem(Item newItem, double quantity)
     {
         boolean inList = false; //Assume that item is not in list
@@ -44,7 +45,7 @@ public class CurrentInventoryList
         }
     }
     
-    public void adjustQuantity(Item item, double quantity)
+    public void adjustQuantity(Item item, double quantity) 
     {
         for(int i=0;i<currentInventoryData.size();i++) //Check entire array for an item with the same Key
         {
@@ -59,6 +60,26 @@ public class CurrentInventoryList
                 //Implement Error window or something?  
             }
         }
+    }
+    
+    public Item getItem(int key)
+    {
+        Item thisItem = new Item();
+        
+        for(int i=0;i<currentInventoryData.size();i++) //Check entire array for an item with the same Key
+        {
+            //Find the item with the same key: When found, add quantity (which can be negative) to the current quantity
+            if(key == currentInventoryData.get(i).getItem().getKey()) 
+            {
+                thisItem = currentInventoryData.get(i).getItem();
+            }
+            else
+            {
+                System.out.println("This item does not exist in inventory! Please add a new item in the 'Create Item' Screen");
+                //Implement Error window or something?  
+            }
+        }
+        return thisItem;
     }
         
         
