@@ -29,6 +29,7 @@ public class Model {
         //adding one test employee with all permissions (Permissions not even implemented yet)
         allEmployees = new EmployeeList();
         allEmployees.addEmployee(new Employee("John","Smith","123 Fake St",new Date(1986,3,30),"JohnSmith","password"));
+        allEmployees.addEmployee(new Employee("Bret","Easley","100 Cheater Lane",new Date(1986,3,30),"a","a"));
         
         allItems = new ItemList(); //Currently items are added in within constructor of ItemList.  Could be changed.
         
@@ -65,6 +66,7 @@ public class Model {
         
         fullMenu.addMeal(mozzarellaChicken);
         fullMenu.addMeal(chickenAlfredo);
+
         //---------------------------------------------------------------------------------------------------------------------------------------------
         
     }
@@ -72,5 +74,10 @@ public class Model {
     public EmployeeList getEmployeeList()
     {
         return allEmployees;
+    }
+    
+    public Menu getMenu()
+    {
+        return fullMenu;
     }
 }

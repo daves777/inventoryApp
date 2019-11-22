@@ -5,16 +5,25 @@
  */
 package Controller;
 
+import Model.ItemToPurchase;
+import Model.Meal;
 import Model.Model;
+import Model.Order;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -26,19 +35,42 @@ public class WaitStaffController implements Initializable {
 
     private Stage myStage;
     private Model model;
+    private ObservableList<Order> allOrders = FXCollections.observableArrayList();
+    
+    @FXML private TableView<Order> orderTable;
+    @FXML public TableColumn<Order, String> serverColumn;
+    @FXML public TableColumn<Order, String> tableColumn;
+    @FXML public TableColumn<Order, String> mealColumn;
+    @FXML public TableColumn<Order, String> statusColumn;
+
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
+      
     }
+    
     
     public void setModel(Model m)
     {
         model = m;
+        
+        allOrders.add(new Order(1,model.getMenu().getMeal(0),1,"Bret"));
+        allOrders.add(new Order(2,model.getMenu().getMeal(1),3,"Daniel"));
+        allOrders.add(new Order(3,model.getMenu().getMeal(1),2,"David"));
+        
+        serverColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("server"));
+        tableColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("table"));
+        mealColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("meal"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("status"));
+        
+        
+        orderTable.setItems(allOrders);
+
+
+        
     }
     
     public void setStage(Stage stage)
