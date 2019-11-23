@@ -44,14 +44,28 @@ public class Item
      * @return the item
      */
     public String getItem() {
-        return description;
+        return getDescription();
     }
 
     /**
      * @param item the item to set
      */
     public void setItem(String item) {
-        this.description = item;
+        this.setDescription(item);
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
    

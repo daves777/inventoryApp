@@ -5,28 +5,35 @@ package Model;
  */
 public class ItemThresholds {
     
-    private String item;
+    private Item item;
     private double threshold;
     
-    public ItemThresholds(Object item, double threshold)
+    public ItemThresholds(Item item, double threshold)
     {
-        this.item = item.toString();
+        this.item = item;
         this.threshold = threshold;
+    }
+
+    ItemThresholds() 
+    {
+        
     }
 
     /**
      * @return the item
      */
-    public String getItem() {
+    public Item getItem() {
         return item;
     }
 
     /**
      * @param item the item to set
      */
-    public void setItem(String item) {
+    public void setItem(Item item) {
         this.item = item;
     }
+
+    
 
     /**
      * @return the threshold
