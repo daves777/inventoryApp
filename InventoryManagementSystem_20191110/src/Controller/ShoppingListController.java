@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  *
  */
 public class ShoppingListController implements Initializable {
-    
+
     private Stage myStage;
     private Model model;
     private final ObservableList<ItemToPurchase> itemsToPurchase = FXCollections.observableArrayList();
@@ -70,26 +70,19 @@ public class ShoppingListController implements Initializable {
         multiplierText.setText(multiplier);
         System.out.println("Multiplier: " + multiplier);
 
-        ShoppingList shop = new ShoppingList(it, cil, itl);     
+        ShoppingList shop = new ShoppingList(it, cil, itl); 
         
         for(int i = 0; i < 4; i++)
         {
             getItemsToPurchase().add(new ItemToPurchase(shop.getItemToPurchase(i), shop.calculateAmountToPurchase(i), ""));
         }
-//        getItemsToPurchase().add(new ItemToPurchase("Breaded Chicken Cutlet", 40.0, ""));
-//        getItemsToPurchase().add(new ItemToPurchase("Breaded Veal Cutlet", 35.0, "Sysco"));
-//        getItemsToPurchase().add(new ItemToPurchase("#10 Can Marianara Sauce", 8.0, "Restaurant Store"));
-//        getItemsToPurchase().add(new ItemToPurchase("Mozzarella Cheese Slices, 1 lb", 8.0, ""));
-//        getItemsToPurchase().add(new ItemToPurchase("Angel Hair Pasta, 1lb", 60.0, "Restaurant Store"));
-        
-
         
         item.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Item"));
         quantity.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,Double>("Quantity"));
         supplier.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Supplier"));
        
         shopTable.setItems(getItemsToPurchase());
-        
+           
     }  
         
     @FXML
@@ -150,10 +143,10 @@ public class ShoppingListController implements Initializable {
     
     @FXML
     private void handleCompleteButton(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PurchasingMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PurchaseOrder.fxml"));
         Parent root = loader.load();
         
-        PurchasingMenuController rc = loader.getController();
+        PurchaseOrderController rc = loader.getController();
         rc.setStage(myStage);
         rc.setModel(model);
         
@@ -161,6 +154,9 @@ public class ShoppingListController implements Initializable {
         
         myStage.setScene(scene);
         myStage.show();
+  
+        rc.transferData(getItemsToPurchase());
+       
     }
           
     public void setModel(Model m)
@@ -179,5 +175,5 @@ public class ShoppingListController implements Initializable {
     public ObservableList<ItemToPurchase> getItemsToPurchase() {
         return itemsToPurchase;
     }
-    
+      
 }
