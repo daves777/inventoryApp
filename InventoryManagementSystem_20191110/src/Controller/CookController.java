@@ -5,16 +5,25 @@
  */
 package Controller;
 
+import Model.CurrentInventory;
+import Model.CurrentInventoryList;
 import Model.Model;
+import Model.Order;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -26,9 +35,13 @@ public class CookController implements Initializable {
 
     private Stage myStage;
     private Model model;
-    /**
-     * Initializes the controller class.
-     */
+    private ObservableList<Order> allOrders;
+    
+    @FXML private TableView<Order> orderTable;
+    @FXML public TableColumn<Order, String> serverColumn;
+    @FXML public TableColumn<Order, String> tableColumn;
+    @FXML public TableColumn<Order, String> mealColumn;
+    @FXML public TableColumn<Order, String> statusColumn;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -37,6 +50,22 @@ public class CookController implements Initializable {
     public void setModel(Model m)
     {
         model = m;
+        refreshTable();
+    }
+    
+    public void refreshTable()
+    {
+        orderTable.getItems().clear();
+        allOrders = FXCollections.observableArrayList(model.getOrders());
+        
+        
+        serverColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("server"));
+        tableColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("table"));
+        mealColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("meal"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("status"));
+        
+        
+        orderTable.setItems(allOrders);
     }
     
     public void setStage(Stage stage)
@@ -61,12 +90,43 @@ public class CookController implements Initializable {
     
     @FXML
     private void handlePrepareOrderButton(ActionEvent event) throws IOException {
-        //placeholder
+        //Function - if an item is selected on the table, change it's status to preparing to inform wait staff that the meal is being made.  If no selection is made, do nothing (Or possibly put an error window)
+        if(orderTable.getSelectionModel().getSelectedItem()!= null)
+        {
+            orderTable.getSelectionModel().getSelectedItem().setStatus("Preparing");
+            refreshTable();
+        }
+        else
+        {
+            //Could place an error window here - 
+        }
+        
     }
     
     @FXML
     private void handleCompleteOrderButton(ActionEvent event) throws IOException {
-        //placeholder
+        //Function - if an item is selected on the table, change it's status to Completed to inform wait staff that the meal is ready for pickup.
+        //Also remove the expected ingredients needed for the meal. If no selection is made, do nothing (Or possibly put an error window)
+        
+        if(orderTable.getSelectionModel().getSelectedItem()!= null)
+        {
+            orderTable.getSelectionModel().getSelectedItem().setStatus("Complete");
+            ArrayList<CurrentInventory> mealIngredients = new ArrayList<CurrentInventory>();
+            mealIngredients = orderTable.getSelectionModel().getSelectedItem().getMealType().getIngredientList();
+            
+            for(int i = 0;i<orderTable.getSelectionModel().getSelectedItem().getMealType().getIngredientList().size();i++)
+            { 
+                model.getCurrentInventory().adjustQuantity(mealIngredients.get(i).getItem(), mealIngredients.get(i).getQuantity()*-1);
+            }
+            
+            
+            refreshTable();
+            
+        }
+        else
+        {
+            //Could place an error window here - 
+        }
     }
     
     @FXML

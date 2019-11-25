@@ -35,7 +35,7 @@ public class WaitStaffController implements Initializable {
 
     private Stage myStage;
     private Model model;
-    private ObservableList<Order> allOrders = FXCollections.observableArrayList();
+    private ObservableList<Order> allOrders;
     
     @FXML private TableView<Order> orderTable;
     @FXML public TableColumn<Order, String> serverColumn;
@@ -56,10 +56,8 @@ public class WaitStaffController implements Initializable {
     public void setModel(Model m)
     {
         model = m;
+        allOrders = FXCollections.observableArrayList(model.getOrders());
         
-        allOrders.add(new Order(1,model.getMenu().getMeal(0),1,"Bret"));
-        allOrders.add(new Order(2,model.getMenu().getMeal(1),3,"Daniel"));
-        allOrders.add(new Order(3,model.getMenu().getMeal(1),2,"David"));
         
         serverColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("server"));
         tableColumn.setCellValueFactory(new PropertyValueFactory<Order, String>("table"));

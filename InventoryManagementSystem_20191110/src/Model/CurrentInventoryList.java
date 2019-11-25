@@ -34,7 +34,7 @@ public class CurrentInventoryList
             }
         }
         
-        if(inList = true) //If item is in the list, only increment/decrement the item already in list
+        if(inList == true) //If item is in the list, only increment/decrement the item already in list
         {
             adjustQuantity(newItem, quantity);
         }
@@ -52,11 +52,14 @@ public class CurrentInventoryList
             //Find the item with the same key: When found, add quantity (which can be negative) to the current quantity
             if(item.getKey()==currentInventoryData.get(i).getItem().getKey()) 
             {
+                System.out.print(item.getDescription()+" changed from "+currentInventoryData.get(i).getQuantity());
                 currentInventoryData.get(i).setQuantity(currentInventoryData.get(i).getQuantity() + quantity);
+                
+                System.out.println(" to "+currentInventoryData.get(i).getQuantity());
+
             }
             else
             {
-                System.out.println("This item does not exist in inventory! Please add a new item in the 'Create Item' Screen");
                 //Implement Error window or something?  
             }
         }
@@ -75,11 +78,28 @@ public class CurrentInventoryList
             }
             else
             {
-                System.out.println("This item does not exist in inventory! Please add a new item in the 'Create Item' Screen");
+
                 //Implement Error window or something?  
             }
         }
+        if(thisItem == null)
+        {
+            System.out.println("This item does not exist in inventory! Please add a new item in the 'Create Item' Screen");
+        }
         return thisItem;
+    }
+    
+    public double queryQuantity(Item item)
+    {
+        double returnQuantity = 0;
+        for(int i=0;i<currentInventoryData.size();i++)
+        {
+            if(item == currentInventoryData.get(i).getItem()) 
+            {
+                returnQuantity = currentInventoryData.get(i).getQuantity();
+            }
+        }
+        return returnQuantity;
     }
         
         

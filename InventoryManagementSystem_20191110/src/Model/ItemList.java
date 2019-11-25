@@ -41,15 +41,21 @@ public class ItemList
     
     public Item getItemByKey(int key)
     {
+        Item returnItem = null;
         for(int i = 0; i < itemData.size();i++)
         {
             if(itemData.get(i).getKey() == key)
             {
-                return getItem(i);
-
+                returnItem = getItem(i);
+                
             }
         }
-        return null;  //Might need to figure out how to throw exceptions. 
+        return returnItem;  //Might need to figure out how to throw exceptions. 
+    }
+    
+    public int getSize()
+    {
+        return itemData.size();
     }
         
 }

@@ -66,4 +66,9 @@ public class Meal {
         this.ingredientList = ingredientList;
     }
     
+    public String toString()
+    {
+        return "Key: "+ key + "\n Description: " + description +"\n 1st Item: " + ingredientList.get(0).getItem().getDescription();
+    }
+    
 }
