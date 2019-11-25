@@ -59,29 +59,7 @@ public class ShoppingListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        CurrentInventoryList cil = new CurrentInventoryList();
-        ItemList it = new ItemList();
-        ItemThresholdList itl = new ItemThresholdList();
-        PastSalesList psl = new PastSalesList();
-        SupplierList sl = new SupplierList();
         
-        DemandMultiplier dm = new DemandMultiplier(psl);
-        String multiplier = dm.calculateMultiplierText();
-        multiplierText.setText(multiplier);
-        System.out.println("Multiplier: " + multiplier);
-
-        ShoppingList shop = new ShoppingList(it, cil, itl); 
-        
-        for(int i = 0; i < 4; i++)
-        {
-            getItemsToPurchase().add(new ItemToPurchase(shop.getItemToPurchase(i), shop.calculateAmountToPurchase(i), ""));
-        }
-        
-        item.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Item"));
-        quantity.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,Double>("Quantity"));
-        supplier.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Supplier"));
-       
-        shopTable.setItems(getItemsToPurchase());
            
     }  
         
@@ -162,6 +140,30 @@ public class ShoppingListController implements Initializable {
     public void setModel(Model m)
     {
         model = m;
+        
+        CurrentInventoryList cil = new CurrentInventoryList();
+        ItemList it = new ItemList();
+        ItemThresholdList itl = new ItemThresholdList();
+        PastSalesList psl = new PastSalesList();
+        SupplierList sl = new SupplierList();
+        
+        DemandMultiplier dm = new DemandMultiplier(psl);
+        String multiplier = dm.calculateMultiplierText();
+        multiplierText.setText(multiplier);
+        System.out.println("Multiplier: " + multiplier);
+
+        ShoppingList shop = new ShoppingList(it, cil, itl); 
+        
+        for(int i = 0; i < 4; i++)
+        {
+            getItemsToPurchase().add(new ItemToPurchase(shop.getItemToPurchase(i), shop.calculateAmountToPurchase(i), ""));
+        }
+        
+        item.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Item"));
+        quantity.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,Double>("Quantity"));
+        supplier.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Supplier"));
+       
+        shopTable.setItems(getItemsToPurchase());
     }
     
     public void setStage(Stage stage)

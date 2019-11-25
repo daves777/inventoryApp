@@ -56,6 +56,14 @@ public class WaitStaffController implements Initializable {
     public void setModel(Model m)
     {
         model = m;
+        refreshTable();
+ 
+    }
+    
+    public void refreshTable()
+    {
+        orderTable.getItems().clear();
+        
         allOrders = FXCollections.observableArrayList(model.getOrders());
         
         
@@ -66,9 +74,6 @@ public class WaitStaffController implements Initializable {
         
         
         orderTable.setItems(allOrders);
-
-
-        
     }
     
     public void setStage(Stage stage)
@@ -93,7 +98,18 @@ public class WaitStaffController implements Initializable {
     
     @FXML
     private void handlePlaceNewOrderButton(ActionEvent event) throws IOException {
-        //placeholder
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PlaceNewOrder.fxml"));
+        
+        Parent root = loader.load();
+        
+        PlaceNewOrderController pnoc = loader.getController();
+        pnoc.setStage(myStage);
+        pnoc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        
+        myStage.setScene(scene);
+        myStage.show();
     }
     
     @FXML

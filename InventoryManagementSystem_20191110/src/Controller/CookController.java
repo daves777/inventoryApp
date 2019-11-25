@@ -56,6 +56,7 @@ public class CookController implements Initializable {
     public void refreshTable()
     {
         orderTable.getItems().clear();
+        
         allOrders = FXCollections.observableArrayList(model.getOrders());
         
         
@@ -91,13 +92,22 @@ public class CookController implements Initializable {
     @FXML
     private void handlePrepareOrderButton(ActionEvent event) throws IOException {
         //Function - if an item is selected on the table, change it's status to preparing to inform wait staff that the meal is being made.  If no selection is made, do nothing (Or possibly put an error window)
-        if(orderTable.getSelectionModel().getSelectedItem()!= null)
+        if(orderTable.getSelectionModel().getSelectedItem()!= null) //If item in table is selected
         {
-            orderTable.getSelectionModel().getSelectedItem().setStatus("Preparing");
-            refreshTable();
+            if(orderTable.getSelectionModel().getSelectedItem().getStatus() == "In Queue") //If said item is of the status "In Queue"
+            {
+                orderTable.getSelectionModel().getSelectedItem().setStatus("Preparing"); //Change it's status to "Preparing"
+                refreshTable();
+            }
+            else
+            {
+                System.out.println("Only items in queue can be prepared!");
+            }
         }
+        
         else
         {
+            System.out.println("Please select an item from the list!");
             //Could place an error window here - 
         }
         
@@ -110,22 +120,29 @@ public class CookController implements Initializable {
         
         if(orderTable.getSelectionModel().getSelectedItem()!= null)
         {
-            orderTable.getSelectionModel().getSelectedItem().setStatus("Complete");
-            ArrayList<CurrentInventory> mealIngredients = new ArrayList<CurrentInventory>();
-            mealIngredients = orderTable.getSelectionModel().getSelectedItem().getMealType().getIngredientList();
+            if(orderTable.getSelectionModel().getSelectedItem().getStatus()=="Preparing")
+            {
+                orderTable.getSelectionModel().getSelectedItem().setStatus("Complete");
+                ArrayList<CurrentInventory> mealIngredients = new ArrayList<CurrentInventory>();
+                mealIngredients = orderTable.getSelectionModel().getSelectedItem().getMealType().getIngredientList();
             
-            for(int i = 0;i<orderTable.getSelectionModel().getSelectedItem().getMealType().getIngredientList().size();i++)
-            { 
-                model.getCurrentInventory().adjustQuantity(mealIngredients.get(i).getItem(), mealIngredients.get(i).getQuantity()*-1);
-            }
-            
-            
+                for(int i = 0;i<orderTable.getSelectionModel().getSelectedItem().getMealType().getIngredientList().size();i++)
+                { 
+                    model.getCurrentInventory().adjustQuantity(mealIngredients.get(i).getItem(), mealIngredients.get(i).getQuantity()*-1);
+                }
+                
             refreshTable();
-            
+            }
+            else
+            {
+                System.out.println("Please select an item that is in the 'preparing' status");
+                //Could place an error window here
+            }
         }
         else
         {
-            //Could place an error window here - 
+            System.out.println("Please select an item from the list!");
+            //Could place an error window here
         }
     }
     

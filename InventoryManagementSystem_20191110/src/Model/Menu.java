@@ -61,6 +61,12 @@ public class Menu {
     {
         return meals.get(i);
     }
+    
+    public ArrayList<Meal> getFullMenu()
+    {
+        return meals;
+    }
+            
 
     void addMeal() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
