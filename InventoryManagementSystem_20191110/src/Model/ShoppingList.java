@@ -26,6 +26,8 @@ public class ShoppingList
     {              
         double amountToPurchase = 0.0;
         
+       
+        
         amountToPurchase = (currentInventory.get(i).getQuantity() - threshold.get(i).getThreshold()); 
         if(amountToPurchase < 0) 
         {
@@ -39,11 +41,23 @@ public class ShoppingList
     {              
         double amountToPurchase = 0.0;
         String itemList = "";
+        
+        /*
+        System.out.println("Current Inventory list size: "+currentInventory.size());
+        System.out.println("Current Threshold list size: "+threshold.size());
+        System.out.println("Current Item list size: "+item.size());
+        */
+        
         amountToPurchase = (currentInventory.get(i).getQuantity() - threshold.get(i).getThreshold()); 
         if(amountToPurchase < 0) 
         {      
             itemList = item.get(i).getDescription();
         }         
         return itemList;
+    }
+    
+    public int getItemSize()
+    {
+        return item.size();
     }
 }

@@ -105,8 +105,19 @@ public class Model {
         return allOrders;
     }
     
-    public CurrentInventoryList getCurrentInventory()
+    public CurrentInventoryList getCurrentInventoryList()
     {
         return allInventory;
     }
+    
+    public ItemList getItemList()
+    {
+        return allItems;
+    }
+    
+    public ItemThresholdList getItemThresholdList()
+    {
+        return thresholds;
+    }
+    
 }

@@ -46,8 +46,7 @@ public class ItemList
         {
             if(itemData.get(i).getKey() == key)
             {
-                returnItem = getItem(i);
-                
+                returnItem = getItem(i);    
             }
         }
         return returnItem;  //Might need to figure out how to throw exceptions. 

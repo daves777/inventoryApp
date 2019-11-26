@@ -128,7 +128,7 @@ public class CookController implements Initializable {
             
                 for(int i = 0;i<orderTable.getSelectionModel().getSelectedItem().getMealType().getIngredientList().size();i++)
                 { 
-                    model.getCurrentInventory().adjustQuantity(mealIngredients.get(i).getItem(), mealIngredients.get(i).getQuantity()*-1);
+                    model.getCurrentInventoryList().adjustQuantity(mealIngredients.get(i).getItem(), mealIngredients.get(i).getQuantity()*-1);
                 }
                 
             refreshTable();

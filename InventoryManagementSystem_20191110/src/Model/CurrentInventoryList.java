@@ -101,6 +101,11 @@ public class CurrentInventoryList
         }
         return returnQuantity;
     }
+    
+    public int getSize()
+    {
+        return currentInventoryData.size();
+    }
         
         
 }

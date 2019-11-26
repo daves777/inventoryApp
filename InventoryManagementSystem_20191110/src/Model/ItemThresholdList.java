@@ -28,8 +28,9 @@ public class ItemThresholdList
             }
         }
         
-        if(inList = true) //If item is in the list, only increment/decrement the item already in list
+        if(inList == true) //If item is in the list, only increment/decrement the item already in list
         {
+            System.out.println("Item "+ newItem.getDescription() + " is already in list");
             adjustQuantity(newItem, quantity);
         }
         
@@ -81,6 +82,11 @@ public class ItemThresholdList
     public ArrayList<ItemThresholds> getItemThresholdData() 
     {
         return itemThresholdData;
+    }
+    
+    public int getSize()
+    {
+        return itemThresholdData.size();
     }
         
 }
