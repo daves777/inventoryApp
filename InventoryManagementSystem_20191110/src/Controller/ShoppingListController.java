@@ -74,7 +74,7 @@ public class ShoppingListController implements Initializable {
 
         ShoppingList shop = new ShoppingList(it, cil, itl); 
         
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 5; i++)
         {
             getItemsToPurchase().add(new ItemToPurchase(shop.getItemToPurchase(i), shop.calculateAmountToPurchase(i), ""));
         }

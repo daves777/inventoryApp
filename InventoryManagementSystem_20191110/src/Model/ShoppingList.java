@@ -31,7 +31,7 @@ public class ShoppingList
         amountToPurchase = (currentInventory.get(i).getQuantity() - threshold.get(i).getThreshold()); 
         if(amountToPurchase < 0) 
         {
-            amountToPurchase = ((amountToPurchase * -1) + 5);        
+            amountToPurchase = ((amountToPurchase * -1) + 50);        
             System.out.println("Item to Purchase: " + item.get(i).getDescription() + ", " + amountToPurchase);
         }         
         return amountToPurchase;
