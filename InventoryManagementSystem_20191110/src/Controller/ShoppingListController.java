@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.CurrentInventoryList;
+import Model.DBConnect;
 import Model.DemandMultiplier;
 import Model.ItemList;
 import Model.ItemThresholdList;
@@ -9,9 +10,13 @@ import Model.Model;
 import Model.PastSalesList;
 import Model.ShoppingList;
 import Model.SupplierList;
+import inventorymanagementsystem.InventoryManagementSystem;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,6 +44,8 @@ public class ShoppingListController implements Initializable {
     @FXML
     private TableView<ItemToPurchase> shopTable;
     @FXML
+    public TableColumn<ItemToPurchase, Integer> id;
+    @FXML
     public TableColumn<ItemToPurchase, String> item;
     @FXML
     public TableColumn<ItemToPurchase, Double> quantity;
@@ -46,6 +53,8 @@ public class ShoppingListController implements Initializable {
     public TableColumn<ItemToPurchase, String> supplier;
     @FXML
     TextField multiplierText;
+    @FXML
+    TextField inputID;
     @FXML
     TextField inputItem;
     @FXML
@@ -74,11 +83,12 @@ public class ShoppingListController implements Initializable {
 
         ShoppingList shop = new ShoppingList(it, cil, itl); 
         
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < cil.getSize(); i++)
         {
-            getItemsToPurchase().add(new ItemToPurchase(shop.getItemToPurchase(i), shop.calculateAmountToPurchase(i), ""));
+            getItemsToPurchase().add(new ItemToPurchase(i + 1, shop.getItemToPurchase(i), shop.calculateAmountToPurchase(i), ""));
         }
         
+        id.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,Integer>("Id"));
         item.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Item"));
         quantity.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,Double>("Quantity"));
         supplier.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Supplier"));
@@ -120,7 +130,7 @@ public class ShoppingListController implements Initializable {
     
     @FXML
     private void handleAddButton(ActionEvent event) throws IOException {       
-        getItemsToPurchase().add(new ItemToPurchase(inputItem.getText(), Double.parseDouble(inputQuantity.getText()), inputSupplier.getText()));
+        getItemsToPurchase().add(new ItemToPurchase(Integer.parseInt(inputID.getText()), inputItem.getText(), Double.parseDouble(inputQuantity.getText()), inputSupplier.getText()));
         shopTable.setItems(getItemsToPurchase());
         inputItem.clear();
         inputQuantity.clear();
@@ -130,6 +140,7 @@ public class ShoppingListController implements Initializable {
     @FXML
     private void handleEditButton(ActionEvent event) throws IOException {
        ObservableList<ItemToPurchase> itemSelected;
+       inputID.setText(shopTable.getSelectionModel().getSelectedItem().IdProperty().getValue().toString());
        inputItem.setText(shopTable.getSelectionModel().getSelectedItem().ItemProperty().getValue());
        inputQuantity.setText(shopTable.getSelectionModel().getSelectedItem().QuantityProperty().getValue().toString());
        inputSupplier.setText(shopTable.getSelectionModel().getSelectedItem().SupplierProperty().getValue());
@@ -142,8 +153,9 @@ public class ShoppingListController implements Initializable {
         itemSelected = shopTable.getSelectionModel().getSelectedItems();
         itemSelected.forEach(allItems::remove);
        
-        getItemsToPurchase().add(new ItemToPurchase(inputItem.getText(), Double.parseDouble(inputQuantity.getText()), inputSupplier.getText()));
+        getItemsToPurchase().add(new ItemToPurchase(Integer.parseInt(inputID.getText()), inputItem.getText(), Double.parseDouble(inputQuantity.getText()), inputSupplier.getText()));
         shopTable.setItems(getItemsToPurchase());
+        inputID.clear();
         inputItem.clear();
         inputQuantity.clear();
         inputSupplier.clear();
@@ -164,6 +176,23 @@ public class ShoppingListController implements Initializable {
         myStage.show();
   
         rc.transferData(getItemsToPurchase());
+        
+        try
+        {
+            String deleteRecordsQuery = "delete from ItemsToPurchase";
+            DBConnect.runQuery(deleteRecordsQuery);
+            for(int i = 0; i < getItemsToPurchase().size(); i++)
+            {
+                String query = "insert into ItemsToPurchase values(DEFAULT, '" + getItemsToPurchase().get(i).ItemProperty().getValue() + "', " + getItemsToPurchase().get(i).QuantityProperty().getValue() + ", '" + getItemsToPurchase().get(i).SupplierProperty().getValue() + "')";
+                System.out.println(query);
+                DBConnect.runQuery(query);
+            }
+            
+            
+        } catch (SQLException ex) 
+        {
+            Logger.getLogger(InventoryManagementSystem.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }
           

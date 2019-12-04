@@ -23,7 +23,8 @@
       </Button>
       <TableView fx:id="shopTable" editable="true" layoutX="58.0" layoutY="85.0" prefHeight="238.0" prefWidth="485.0">
         <columns>
-          <TableColumn fx:id="item" prefWidth="75.0" text="Item" />
+            <TableColumn fx:id="id" prefWidth="50.0" text="Id" />
+          <TableColumn fx:id="item" prefWidth="192.0" text="Item" />
           <TableColumn fx:id="quantity" prefWidth="147.0" text="Quantity" />
             <TableColumn fx:id="supplier" prefWidth="163.0" text="Supplier" />
         </columns>
@@ -56,9 +57,9 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <TextField fx:id="inputItem" layoutX="61.0" layoutY="499.0" promptText="Enter Item" />
-      <TextField fx:id="inputQuantity" layoutX="227.0" layoutY="499.0" promptText="Enter Quantity" />
-      <TextField fx:id="inputSupplier" layoutX="390.0" layoutY="499.0" promptText="Enter Supplier" />
+      <TextField fx:id="inputItem" layoutX="114.0" layoutY="499.0" promptText="Enter Item" />
+      <TextField fx:id="inputQuantity" layoutX="282.0" layoutY="499.0" prefHeight="25.0" prefWidth="130.0" promptText="Enter Quantity" />
+      <TextField fx:id="inputSupplier" layoutX="427.0" layoutY="499.0" promptText="Enter Supplier" />
       <Button layoutX="284.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleUpdateButton" text="Update Existing Item">
          <font>
             <Font size="16.0" />
@@ -85,5 +86,6 @@
          </font>
       </Text>
       <TextField fx:id="multiplierText" layoutX="262.0" layoutY="339.0" prefHeight="25.0" prefWidth="182.0" />
+      <TextField fx:id="inputID" layoutX="25.0" layoutY="499.0" prefHeight="25.0" prefWidth="68.0" promptText="Enter ID" />
    </children>
 </AnchorPane>

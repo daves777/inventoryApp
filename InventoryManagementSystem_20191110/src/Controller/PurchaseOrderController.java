@@ -10,7 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -75,7 +78,21 @@ public class PurchaseOrderController implements Initializable
         poTable.setItems(itemsForPO);
     }
     
+    @FXML
+    private void handleMainMenuButton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainMenu.fxml"));
+        Parent root = loader.load();
         
+        MainMenuController mc = loader.getController();
+        mc.setStage(myStage);
+        mc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        
+        myStage.setScene(scene);
+        myStage.show();
+    }   
+    
     public void setStage(Stage stage)
     {
         myStage = stage;
