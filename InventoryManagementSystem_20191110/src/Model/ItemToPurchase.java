@@ -9,42 +9,22 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class ItemToPurchase 
 {
-    private SimpleIntegerProperty id;
     private SimpleStringProperty item;
     private SimpleDoubleProperty quantity;
     private SimpleStringProperty supplier;
     
     public ItemToPurchase()
     {
-        this(null, null, null, null);
+        this(null, null, null);
     }
     
-    public ItemToPurchase(Integer id, String item, Double quantity, String supplier)
+    public ItemToPurchase(String item, Double quantity, String supplier)
     {
-        this.id = new SimpleIntegerProperty(id);
         this.item = new SimpleStringProperty(item);
         this.quantity = new SimpleDoubleProperty(quantity);
         this.supplier = new SimpleStringProperty(supplier);
     }
-
-    /**
-     * @return the id
-     */
-    public SimpleIntegerProperty getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(SimpleIntegerProperty id) {
-        this.id = id;
-    }
-
-    public SimpleIntegerProperty IdProperty(){
-        return id;
-    }
-    
+   
     /**
      * @return the item
      */

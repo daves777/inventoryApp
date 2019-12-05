@@ -20,9 +20,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -32,7 +32,7 @@ public class ReceivingController implements Initializable
     private Model model;
     private static ResultSet results = null;
     private ObservableList<ItemToPurchase> itemsToPurchase = FXCollections.observableArrayList();
-
+       
     @FXML
     private TableView<PurchaseOrder> poTable;
     @FXML
@@ -40,23 +40,24 @@ public class ReceivingController implements Initializable
     @FXML
     public TableColumn<PurchaseOrder, Double> quantity;
     @FXML
-    TextField supplierText;
-    
+    ComboBox cbSupplier;
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         try 
         {
+            
+            
             DBConnect db = new DBConnect();
             results = db.selectQuery("select * from ItemsToPurchase");
 
             while(results.next()) {
-                getItemsToPurchase().add(new ItemToPurchase(results.getInt(1), results.getString(2), results.getDouble(3), results.getString(4)));
+                getItemsToPurchase().add(new ItemToPurchase(results.getString(2), results.getDouble(3), results.getString(4)));
             }
-            
+          
             for(int i = 0; i < itemsToPurchase.size(); i++)
             {
-                System.out.println(getItemsToPurchase().get(i).getId().getValue() + ", " + getItemsToPurchase().get(i).getItem().getValue() + ", " + getItemsToPurchase().get(i).getQuantity().getValue() + ", " + getItemsToPurchase().get(i).getSupplier().getValue());
+                System.out.println(getItemsToPurchase().get(i).getItem().getValue() + ", " + getItemsToPurchase().get(i).getQuantity().getValue() + ", " + getItemsToPurchase().get(i).getSupplier().getValue());
             }
             
       
@@ -65,28 +66,17 @@ public class ReceivingController implements Initializable
         {
             Logger.getLogger(InventoryManagementSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+        cbSupplier.getItems().addAll("Sysco","Giant Foods","The Restaurant Store","The Restaurant Depot");
     }  
-    
-//    public ObservableList transferData(ObservableList ol) 
-//    {
-//        setItemsToPurchase((ObservableList<ItemToPurchase>) ol);
-//        
-//
-//        for(int i = 0; i < getItemsToPurchase().size(); i++)
-//        {
-//            System.out.println("Copied Item " + i + ": " + getItemsToPurchase().get(i).ItemProperty().getValue() + ", " + getItemsToPurchase().get(i).QuantityProperty().getValue() + ", " + getItemsToPurchase().get(i).SupplierProperty().getValue());
-//        }
-//        
-//        return getItemsToPurchase();
-//    }
-    
+       
     @FXML
     private void handleGoButton(ActionEvent event) throws IOException 
     {
         ObservableList<PurchaseOrder> itemsForPO = FXCollections.observableArrayList();
         for(int i = 0; i < getItemsToPurchase().size(); i++)
         {    
-            if(getItemsToPurchase().get(i).SupplierProperty().getValue().compareTo(supplierText.getText()) == 0)
+            if(getItemsToPurchase().get(i).SupplierProperty().getValue().compareTo(cbSupplier.getValue().toString()) == 0)
             {
                 
                 itemsForPO.add(new PurchaseOrder(getItemsToPurchase().get(i).ItemProperty().getValue(), getItemsToPurchase().get(i).QuantityProperty().getValue()));
@@ -126,7 +116,22 @@ public class ReceivingController implements Initializable
     public void setModel(Model m)
     {
         model = m;
+        
     }
+
+//    /**
+//     * @return the suppliers
+//     */
+//    public ObservableList<ItemToPurchase> getSuppliers() {
+//        return suppliers;
+//    }
+//
+//    /**
+//     * @param suppliers the suppliers to set
+//     */
+//    public void setSuppliers(ObservableList<ItemToPurchase> suppliers) {
+//        this.suppliers = suppliers;
+//    }
     
     /**
      * @return the itemsToPurchase

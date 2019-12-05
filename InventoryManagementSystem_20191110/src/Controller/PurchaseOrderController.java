@@ -14,9 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -34,12 +34,12 @@ public class PurchaseOrderController implements Initializable
     @FXML
     public TableColumn<PurchaseOrder, Double> quantity;
     @FXML
-    TextField supplierText;
+    ComboBox cbSupplier;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-
+        cbSupplier.getItems().addAll("Sysco","Giant Foods","The Restaurant Store","The Restaurant Depot");
     }  
     
     public ObservableList transferData(ObservableList ol) 
@@ -61,7 +61,7 @@ public class PurchaseOrderController implements Initializable
         ObservableList<PurchaseOrder> itemsForPO = FXCollections.observableArrayList();
         for(int i = 0; i < getItemsToPurchase().size(); i++)
         {    
-            if(getItemsToPurchase().get(i).SupplierProperty().getValue().compareTo(supplierText.getText()) == 0)
+            if(getItemsToPurchase().get(i).SupplierProperty().getValue().compareTo(cbSupplier.getValue().toString()) == 0)
             {
                 
                 itemsForPO.add(new PurchaseOrder(getItemsToPurchase().get(i).ItemProperty().getValue(), getItemsToPurchase().get(i).QuantityProperty().getValue()));

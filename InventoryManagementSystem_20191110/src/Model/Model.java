@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Bret
  */
 public class Model {
-    
+    private SupplierList allSuppliers;
     private EmployeeList allEmployees;
     private ItemList allItems;
     private CurrentInventoryList allInventory;
@@ -35,7 +35,7 @@ public class Model {
         
         allItems = new ItemList(); //Currently items are added in within constructor of ItemList.  Could be changed.
         
-        
+        allSuppliers = new SupplierList();
         allInventory = new CurrentInventoryList();
         
         
@@ -88,6 +88,13 @@ public class Model {
         allOrders.add(new Order(3,getMenu().getMeal(1),2,"David"));
         //---------------------------------------------------------------------------
         
+    }
+
+    /**
+     * @return the allSuppliers
+     */
+    public SupplierList getSupplierList() {
+        return allSuppliers;
     }
     
     public EmployeeList getEmployeeList()

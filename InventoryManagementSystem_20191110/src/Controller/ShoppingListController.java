@@ -25,6 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -44,8 +45,6 @@ public class ShoppingListController implements Initializable {
     @FXML
     private TableView<ItemToPurchase> shopTable;
     @FXML
-    public TableColumn<ItemToPurchase, Integer> id;
-    @FXML
     public TableColumn<ItemToPurchase, String> item;
     @FXML
     public TableColumn<ItemToPurchase, Double> quantity;
@@ -54,13 +53,11 @@ public class ShoppingListController implements Initializable {
     @FXML
     TextField multiplierText;
     @FXML
-    TextField inputID;
-    @FXML
     TextField inputItem;
     @FXML
     TextField inputQuantity;
     @FXML
-    TextField inputSupplier;
+    ComboBox cbSupplier;
 
     /**
      * Initializes the controller class.
@@ -85,15 +82,16 @@ public class ShoppingListController implements Initializable {
         
         for(int i = 0; i < cil.getSize(); i++)
         {
-            getItemsToPurchase().add(new ItemToPurchase(i + 1, shop.getItemToPurchase(i), shop.calculateAmountToPurchase(i), ""));
+            getItemsToPurchase().add(new ItemToPurchase(shop.getItemToPurchase(i), shop.calculateAmountToPurchase(i), ""));
         }
         
-        id.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,Integer>("Id"));
         item.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Item"));
         quantity.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,Double>("Quantity"));
         supplier.setCellValueFactory(new PropertyValueFactory<ItemToPurchase,String>("Supplier"));
        
         shopTable.setItems(getItemsToPurchase());
+        
+        cbSupplier.getItems().addAll("Sysco","Giant Foods","The Restaurant Store","The Restaurant Depot");
     }
     
     @Override
@@ -130,20 +128,18 @@ public class ShoppingListController implements Initializable {
     
     @FXML
     private void handleAddButton(ActionEvent event) throws IOException {       
-        getItemsToPurchase().add(new ItemToPurchase(Integer.parseInt(inputID.getText()), inputItem.getText(), Double.parseDouble(inputQuantity.getText()), inputSupplier.getText()));
+        getItemsToPurchase().add(new ItemToPurchase(inputItem.getText(), Double.parseDouble(inputQuantity.getText()), cbSupplier.getValue().toString()));
         shopTable.setItems(getItemsToPurchase());
         inputItem.clear();
         inputQuantity.clear();
-        inputSupplier.clear();
+        cbSupplier.getSelectionModel().clearSelection();
     }
     
     @FXML
     private void handleEditButton(ActionEvent event) throws IOException {
        ObservableList<ItemToPurchase> itemSelected;
-       inputID.setText(shopTable.getSelectionModel().getSelectedItem().IdProperty().getValue().toString());
        inputItem.setText(shopTable.getSelectionModel().getSelectedItem().ItemProperty().getValue());
        inputQuantity.setText(shopTable.getSelectionModel().getSelectedItem().QuantityProperty().getValue().toString());
-       inputSupplier.setText(shopTable.getSelectionModel().getSelectedItem().SupplierProperty().getValue());
     }
     
     @FXML
@@ -153,12 +149,11 @@ public class ShoppingListController implements Initializable {
         itemSelected = shopTable.getSelectionModel().getSelectedItems();
         itemSelected.forEach(allItems::remove);
        
-        getItemsToPurchase().add(new ItemToPurchase(Integer.parseInt(inputID.getText()), inputItem.getText(), Double.parseDouble(inputQuantity.getText()), inputSupplier.getText()));
+        getItemsToPurchase().add(new ItemToPurchase(inputItem.getText(), Double.parseDouble(inputQuantity.getText()), cbSupplier.getValue().toString()));
         shopTable.setItems(getItemsToPurchase());
-        inputID.clear();
         inputItem.clear();
         inputQuantity.clear();
-        inputSupplier.clear();
+        cbSupplier.getSelectionModel().clearSelection();
     }
     
     @FXML
