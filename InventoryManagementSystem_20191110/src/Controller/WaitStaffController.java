@@ -139,9 +139,5 @@ public class WaitStaffController implements Initializable {
         }
     }
     
-    @FXML
-    private void handlePayForOrderButton(ActionEvent event) throws IOException {
-        //placeholder
-    }    
     
 }

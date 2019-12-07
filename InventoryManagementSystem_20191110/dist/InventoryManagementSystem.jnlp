@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="InventoryManagementSystem.jar" size="61337" download="eager" />
+    <jar href="InventoryManagementSystem.jar" size="62047" download="eager" />
     <jar href="lib\derby.jar" size="2668112" download="eager" />
     <jar href="lib\derbyclient.jar" size="539656" download="eager" />
     <jar href="lib\derbynet.jar" size="237388" download="eager" />

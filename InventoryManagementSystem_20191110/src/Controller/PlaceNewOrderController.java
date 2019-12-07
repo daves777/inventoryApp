@@ -7,6 +7,7 @@ package Controller;
 
 import Model.Meal;
 import Model.Model;
+import Model.Order;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -33,13 +35,12 @@ public class PlaceNewOrderController implements Initializable {
 
     private Stage myStage;
     private Model model;
-    private ObservableList<Meal> allOrders;
+    private ObservableList<Meal> allMeals;
     
     @FXML private TableView<Meal> mealTable;
     @FXML public TableColumn<Meal, String> keyColumn;
     @FXML public TableColumn<Meal, String> descriptionColumn;
-    @FXML public TableColumn<Integer, String> qtyColumn;
-    @FXML public TableColumn<Character, String> modifyColumn;
+    @FXML public TextField tableNumber;
     
     
     public void setModel(Model m)
@@ -57,16 +58,23 @@ public class PlaceNewOrderController implements Initializable {
     {
         mealTable.getItems().clear();
         
-        allOrders = FXCollections.observableArrayList(model.getMenu().getFullMenu());
+        allMeals = FXCollections.observableArrayList(model.getMenu().getFullMenu());
         
         keyColumn.setCellValueFactory(new PropertyValueFactory<Meal, String>("key"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Meal, String>("description"));
-        qtyColumn.setCellFactory(TextFieldTableCell.<Integer>forTableColumn());
-        modifyColumn.setCellFactory(TextFieldTableCell.<Character>forTableColumn());
         
         
-        mealTable.setItems(allOrders);
+        mealTable.setItems(allMeals);
     }
+    
+    public static Integer tryParse(String text) {
+    try {
+    return Integer.parseInt(text);
+    } catch (NumberFormatException e) {
+        System.out.println(text+"Is not an integer!");
+        return 0;
+    }
+}
     
     @FXML
     private void handleBackButton(ActionEvent event) throws IOException {
@@ -84,6 +92,10 @@ public class PlaceNewOrderController implements Initializable {
     }
     @FXML
     private void handlePlaceOrderButton(ActionEvent event) throws IOException {
+        if(mealTable.getSelectionModel().getSelectedItem()!= null) //If item in table is selected
+        {
+            model.getOrders().add(new Order(6,mealTable.getSelectionModel().getSelectedItem(),tryParse(tableNumber.getText()),model.getCurrentUser().getFirstName()));
+        }
         
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/WaitStaff.fxml"));
