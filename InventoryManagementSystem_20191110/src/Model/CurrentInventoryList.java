@@ -1,6 +1,11 @@
 package Model;
 
+import inventorymanagementsystem.InventoryManagementSystem;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Current Inventory List
@@ -8,10 +13,13 @@ import java.util.ArrayList;
 public class CurrentInventoryList 
 {
     private ArrayList<CurrentInventory> currentInventoryData = new ArrayList<CurrentInventory>();
+//    private static ResultSet results = null;
+//    private ItemList allItems;
     
     public CurrentInventoryList() //Starting empty so that it can be initialized in Model.
     {
-        
+//        
+
     }   
 
     /**
@@ -84,7 +92,7 @@ public class CurrentInventoryList
         }
         if(thisItem == null)
         {
-            System.out.println("This item does not exist in inventory! Please add a new item in the 'Create Item' Screen");
+//            System.out.println("This item does not exist in inventory! Please add a new item in the 'Create Item' Screen");
         }
         return thisItem;
     }

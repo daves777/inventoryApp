@@ -70,7 +70,7 @@ public class ItemThresholdList
             }
             else
             {
-                System.out.println("This item does not exist in inventory! Please add a new item in the 'Create Item' Screen");
+//                System.out.println("This item does not exist in inventory! Please add a new item in the 'Create Item' Screen");
                 //Implement Error window or something?  
             }
         }
