@@ -72,6 +72,20 @@ public class Item
     {
         return baseUOM;
     }
+
+    /**
+     * @return the costPerUOM
+     */
+    public double getCostPerUOM() {
+        return costPerUOM;
+    }
+
+    /**
+     * @param costPerUOM the costPerUOM to set
+     */
+    public void setCostPerUOM(double costPerUOM) {
+        this.costPerUOM = costPerUOM;
+    }
     
 
    
