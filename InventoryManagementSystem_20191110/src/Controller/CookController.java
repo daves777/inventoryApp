@@ -148,6 +148,16 @@ public class CookController implements Initializable {
     
     @FXML
     private void handleLostDamagedIngredientsButton(ActionEvent event) throws IOException {
-        //placeholder
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AdjustIngredients.fxml"));
+        Parent root = loader.load();
+        
+        AdjustIngredientsController mc = loader.getController();
+        mc.setStage(myStage);
+        mc.setModel(model);
+        
+        Scene scene = new Scene(root);
+        
+        myStage.setScene(scene);
+        myStage.show();
     }
 }

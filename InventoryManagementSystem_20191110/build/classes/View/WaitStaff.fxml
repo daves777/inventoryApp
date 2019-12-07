@@ -33,7 +33,6 @@
       <Button layoutX="46.0" layoutY="78.0" mnemonicParsing="false" onAction="#handlePlaceNewOrderButton" prefHeight="46.0" prefWidth="126.0" text="Place New Order(s)" />
       <Button layoutX="46.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleEditOrderButton" prefHeight="46.0" prefWidth="126.0" text="Edit Order" />
       <Button layoutX="46.0" layoutY="193.0" mnemonicParsing="false" onAction="#handlePickUpCompletedOrderButton" prefHeight="46.0" prefWidth="126.0" text="Pick Up Completed Order" textAlignment="CENTER" wrapText="true" />
-      <Button layoutX="46.0" layoutY="252.0" mnemonicParsing="false" onAction="#handlePayForOrderButton" prefHeight="46.0" prefWidth="126.0" text="Pay For Order(s)" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="80.0" prefHeight="24.0" prefWidth="344.0" text="Current Orders" textAlignment="CENTER" wrapText="true">
          <opaqueInsets>
             <Insets />

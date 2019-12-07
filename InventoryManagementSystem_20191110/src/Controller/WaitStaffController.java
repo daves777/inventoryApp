@@ -119,7 +119,24 @@ public class WaitStaffController implements Initializable {
     
     @FXML
     private void handlePickUpCompletedOrderButton(ActionEvent event) throws IOException {
-        //placeholder
+        if(orderTable.getSelectionModel().getSelectedItem()!= null) //If item in table is selected
+        {
+            if(orderTable.getSelectionModel().getSelectedItem().getStatus() == "Complete") //If said item is of the status ""
+            {
+                model.getOrders().remove(orderTable.getSelectionModel().getSelectedItem()); //Remove order from list, and refresh table.
+                refreshTable();
+            }
+            else
+            {
+                System.out.println("Only items that are completed may be taken!");
+            }
+        }
+        
+        else
+        {
+            System.out.println("Please select an item from the list!");
+            //Could place an error window here - 
+        }
     }
     
     @FXML
