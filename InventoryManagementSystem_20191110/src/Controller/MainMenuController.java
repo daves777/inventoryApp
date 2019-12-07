@@ -125,6 +125,12 @@ public class MainMenuController implements Initializable {
         myStage.setScene(scene);
         myStage.show();
     }
+    
+    @FXML
+    private void handleViewWorkersButton(ActionEvent event) throws IOException {
+        //Implement once view worker button works
+    }
+    
     @FXML
     private void handleReceiverButton(ActionEvent event) throws IOException {
         //Implement once receiver button works

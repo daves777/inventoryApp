@@ -7,7 +7,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainMenuController">
    <children>
-      <Label layoutX="236.0" layoutY="49.0" text="Main Menu">
+      <Button layoutX="430.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleViewWorkersButton" prefHeight="37.0" prefWidth="120.0" text="View Workers">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="239.0" layoutY="48.0" text="Main Menu">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -52,5 +57,10 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <Label layoutX="440.0" layoutY="104.0" text="Management">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
