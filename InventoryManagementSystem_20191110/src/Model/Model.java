@@ -19,6 +19,7 @@ public class Model {
     private CurrentInventoryList allInventory;
     private ItemThresholdList thresholds;
     private Menu fullMenu;
+    private Employee currentUser;
     
     private Meal mozzarellaChicken;
     private Meal chickenAlfredo;
@@ -166,6 +167,14 @@ public class Model {
         return thresholds;
     }
     
+    public Employee getCurrentUser()
+    {
+        return currentUser;
+    }
     
+    public void setCurrentUser(Employee e)
+    {
+        currentUser = e;
+    }
     
 }
